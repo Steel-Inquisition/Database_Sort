@@ -1,0 +1,299 @@
+﻿<Window x:Class="WebsiteThing.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WebsiteThing"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="900" Width="800">
+
+    <!-- Main Canvas but also log-in box -->
+    <Canvas>
+
+        <!-- Background-->
+        <Canvas Name="log_in_box" Visibility="Visible">
+            <Rectangle x:Name="LoginRect" Margin="50" Width="400" Height="350">
+                <Rectangle.Fill>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FF7E1D1D"/>
+                        <GradientStop Color="#FFC3A643" Offset="1"/>
+                    </LinearGradientBrush>
+                </Rectangle.Fill>
+            </Rectangle>
+
+            <!-- Title -->
+            <TextBlock Name="TitleBox" Text="Random Data Sorter Thing" Margin="100" Width="300" Height="250" FontSize="20" />
+            <TextBlock Name="LogInBox" Text="Username: " Margin="100" Width="600" Height="25" FontSize="15" Canvas.Top="35" Canvas.Left="0" />
+            <TextBlock Name="LogInBox2" Text="Password: " Margin="100" Width="600" Height="25" FontSize="15" Canvas.Top="59" Canvas.Left="0" />
+
+            <!-- Username and Password -->
+            <TextBox Name="UsernameEnter"  Margin="100" Width="200" Canvas.Left="75" Canvas.Top="39" />
+            <TextBox Name="PasswordEnter"  Margin="100" Width="200" Canvas.Left="75" Canvas.Top="64" />
+
+            <!-- Log In / Don't Have an Account / Forgot Password Questions-->
+            <Button Content="Log In" Margin="100" Canvas.Top="94" Click="Log_In" />
+            <Button Content="Don't Have An Account?" Margin="100" Canvas.Top="94" Canvas.Left="40" Click="New_Account" />
+            <Button Content="Forgot Password?" Margin="100" Canvas.Top="94" Canvas.Left="178" Click="Forgot_Password" />
+        </Canvas>
+
+
+
+        <!-- The Forgot-Password Menu -->
+        <Canvas Name="forgot_password_box" Visibility="Hidden">
+
+            <!-- Background -->
+            <Rectangle x:Name="Forgot_Password_Enter" Margin="470, 50" Width="300" Height="350" >
+                <Rectangle.Fill>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FF7E1D1D"/>
+                        <GradientStop Color="#FFC3A643" Offset="1"/>
+                    </LinearGradientBrush>
+                </Rectangle.Fill>
+            </Rectangle>
+
+            <!-- Enter in username wanted -->
+            <TextBlock Text="Enter In Username:" Margin="500, 80" Width="240" Height="20" />
+            <TextBox Name="TestUserName" Margin="500, 80" Width="200" Canvas.Top="20" />
+
+            <!-- Check Background -->
+            <TextBlock Text="What is your favorite pet?:" Margin="500, 140" Width="240" Height="20" />
+            <TextBox Name="TestBackground" Margin="500, 80" Width="200" Canvas.Top="80" />
+
+            <!-- Enter in Replacement Password-->
+            <TextBlock Text="Enter In Replacement Password:" Margin="500, 200" Width="240" Height="20" />
+            <TextBox Name="TestPassword" Margin="500, 80" Width="200" Canvas.Top="140" />
+
+            <!-- Check in Replacement Password Again -->
+            <TextBlock Text="Enter in Replacement Password Again:" Margin="500, 240" Width="240" Height="20" />
+            <TextBox Name="TestPasswordAgain" Margin="500, 80" Width="200" Canvas.Top="180"/>
+
+            <!-- Enter / Exit Buttons -->
+            <Button Content="Enter" Click="Replace_New_User" Margin="500, 300" Width="200"/>
+            <Button Content="Exit" Click="Exit_Box" Margin="500, 330" Width="200"/>
+        </Canvas>
+
+
+
+        <!-- The No-Account Menu -->
+        <Canvas Name="no_account_box" Visibility="Hidden">
+
+            <!-- Background -->
+            <Rectangle x:Name="User_Enter" Margin="470, 50" Width="300" Height="350" >
+                <Rectangle.Fill>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FF7E1D1D"/>
+                        <GradientStop Color="#FFC3A643" Offset="1"/>
+                    </LinearGradientBrush>
+                </Rectangle.Fill>
+            </Rectangle>
+
+            <!-- Enter in a new username-->
+            <TextBlock Text="Enter In New Username:" Margin="500, 80" Width="240" Height="20" />
+            <TextBox Name="NewUserName" Margin="500, 80" Width="200" Canvas.Top="20" />
+
+            <!-- Enter in a new password -->
+            <TextBlock Text="Enter In New Password:" Margin="500, 140" Width="240" Height="20" />
+            <TextBox Name="NewPassword" Margin="500, 80" Width="200" Canvas.Top="80" />
+
+            <!-- Enter in a new password again -->
+            <TextBlock Text="Enter In Password Again:" Margin="500, 180" Width="240" Height="20" />
+            <TextBox Name="CheckNewPassword" Margin="500, 80" Width="200" Canvas.Top="120" />
+
+            <!-- Enter up in a new back up -->
+            <TextBlock Text="Enter in BackUp: What is your favorite pet?" Margin="500, 240" Width="240" Height="20" />
+            <TextBox Name="BackUp" Margin="500, 80" Width="200" Canvas.Top="180"/>
+
+            <!-- Enter / Exit Buttons -->
+            <Button Content="Enter" Click="Enter_New_User" Margin="500, 300" Width="200"/>
+            <Button Content="Exit" Click="Exit_Box" Margin="500, 330" Width="200"/>
+
+        </Canvas>
+
+
+        <!-- The Main Menu After Getting Accepted -->
+        <Canvas Name="MenuForUser" Visibility="Hidden">
+
+            <!-- Background -->
+            <Rectangle x:Name="Menu" Margin="50, 50" Width="700" Height="700" >
+                <Rectangle.Fill>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FF7E1D1D"/>
+                        <GradientStop Color="#FFC3A643" Offset="1"/>
+                    </LinearGradientBrush>
+                </Rectangle.Fill>
+
+            </Rectangle>
+
+            <!-- Title -->
+            <TextBlock Name="WelcomeUserText" Text="Welcome!"  Margin="60, 60"/>
+
+
+            <!-- Box that displays all swords -->
+            <ScrollViewer  Margin="60, 80" Height="300" VerticalScrollBarVisibility = "Visible">
+
+                <TextBlock Name="DisplayData" Width = "300"  TextWrapping = "Wrap" Text = "" />
+
+            </ScrollViewer>
+
+            <!-- Box that displays favorites -->
+            <ScrollViewer  Margin="60, 400" Height="300" VerticalScrollBarVisibility = "Visible">
+
+                <TextBlock Name="DisplayFavorites" Width = "300"  TextWrapping = "Wrap" Text = "" />
+
+            </ScrollViewer>
+
+            <!-- Favorites Section -->
+
+            <!-- Add to Favorites: Title and Input to type name in-->
+            <TextBlock Text="Write Name of Weapon to add to wishlist: " Canvas.Left="400" Canvas.Top="404" />
+            <TextBox Name="AddWeaponInput" Tag="Weapon" Text="" Canvas.Left="400" Canvas.Top="421" Width="150"/>
+            <Button Click="AddWeapon" Content="Add" Canvas.Left="554" Canvas.Top="419" />
+
+            <!-- Remove from Favorites: Title and Input to remove -->
+            <TextBlock Text="Write Name of Weapon to remove from wishlist: " Canvas.Left="400" Canvas.Top="443"/>
+            <TextBox Name="RemoveWeaponInput" Tag="Weapon" Text="" Canvas.Left="400" Canvas.Top="461" Width="150" />
+            <Button Click="RemoveWeapon" Content="Remove" Canvas.Left="554" Canvas.Top="459"/>
+
+            <!-- Save Current Wishlist -->
+            <Button Click="Save_This_Button" Content="Save" Canvas.Left="435" Canvas.Top="499" Width="100"/>
+
+
+            <!-- Displays All Stats and Search -->
+
+            <!-- Title, Input, and Checkbox-->
+            <TextBlock Text="Type" Canvas.Left="400" Canvas.Top="93"  />
+            <TextBox Name="UserEnterType" Tag="Type" Text="None" Canvas.Left="435" Canvas.Top="92" Width="115" />
+            <CheckBox Name="SearchType" Canvas.Left="380" Canvas.Top="95" />
+
+            <!-- Name, Input, and Checkbox-->
+            <TextBlock Text="Name" Canvas.Left="400" Canvas.Top="114" />
+            <TextBox Name="UserEnterName" Tag="Type" Text="None" Canvas.Left="435" Canvas.Top="114" Width="115" />
+            <CheckBox Name="SearchName" Canvas.Left="380" Canvas.Top="115" />
+
+
+            <!-- All Stats -->
+            <TextBlock Text="Stats (min to max)" Canvas.Left="430" Canvas.Top="149" />
+
+            <!-- Physical Damage, Input Min, Input Max, and Checkbox-->
+            <TextBlock Text="Physical Damage" Canvas.Left="400" Canvas.Top="172" Width="101"  />
+            <TextBox Name="UserEnterPhysMin" Text="0" Canvas.Left="512" Canvas.Top="172" Width="29" />
+            <TextBox Name="UserEnterPhysMax" Text="0" Canvas.Left="545" Canvas.Top="172" Width="29" />
+            <CheckBox Name="SearchPhysical" Canvas.Left="381" Canvas.Top="173" />
+
+            <!-- Magical Damage, Input Min, Input Max, and Checkbox-->
+            <TextBlock Text="Magical Damage" Canvas.Left="400" Canvas.Top="192" Width="100"  />
+            <TextBox Name="UserEnterMagMin" Text="0" Canvas.Left="512" Canvas.Top="192" Width="29" />
+            <TextBox Name="UserEnterMagMax" Text="0" Canvas.Left="545" Canvas.Top="192" Width="29" />
+            <CheckBox Name="SearchMagical" Canvas.Left="381" Canvas.Top="193" />
+
+            <!-- Fire Damage, Input Min, Input Max, and Checkbox-->
+            <TextBlock Text="Fire Damage" Canvas.Left="400" Canvas.Top="212" Width="75"  />
+            <TextBox Name="UserEnterFireMin" Text="0" Canvas.Left="512" Canvas.Top="212" Width="29" />
+            <TextBox Name="UserEnterFireMax" Text="0" Canvas.Left="545" Canvas.Top="212" Width="29" />
+            <CheckBox Name="SearchFire" Canvas.Left="381" Canvas.Top="213" />
+
+            <!-- Lightning Damage, Input Min, Input Max, and Checkbox-->
+            <TextBlock Text="Lightning Damage" Canvas.Left="400" Canvas.Top="232" Width="110"  />
+            <TextBox Name="UserEnterLightMin" Text="0" Canvas.Left="512" Canvas.Top="232" Width="29" />
+            <TextBox Name="UserEnterLightMax" Text="0" Canvas.Left="545" Canvas.Top="232" Width="29" />
+            <CheckBox Name="SearchLightning" Canvas.Left="381" Canvas.Top="233" />
+
+            <!-- Critical Damage, Input Min, Input Max, and Checkbox-->
+            <TextBlock Text="Critical Damage" Canvas.Left="400" Canvas.Top="252" Width="94"  />
+            <TextBox Name="UserEnterCrticalMin" Text="0" Canvas.Left="512" Canvas.Top="252" Width="29" />
+            <TextBox Name="UserEnterCrticalMax" Text="0" Canvas.Left="545" Canvas.Top="252" Width="29" />
+            <CheckBox Name="SearchCritical" Canvas.Left="381" Canvas.Top="253" />
+
+            <!-- Blood, Input Min, Input Max, and Checkbox -->
+            <TextBlock Text="Blood" Canvas.Left="400" Canvas.Top="271" Width="34"  />
+            <TextBox Name="UserEnterBloodMin" Text="0" Canvas.Left="512" Canvas.Top="272" Width="29" />
+            <TextBox Name="UserEnterBloodMax" Text="0" Canvas.Left="546" Canvas.Top="272" Width="29" />
+            <CheckBox Name="SearchBlood" Canvas.Left="381" Canvas.Top="273" />
+
+            <!-- Poision, Input Min, Input Max, and Checkbox -->
+            <TextBlock Text="Poision" Canvas.Left="401" Canvas.Top="293" Width="43"  />
+            <TextBox Name="UserEnterPoisionMin" Text="0" Canvas.Left="512" Canvas.Top="294" Width="29" />
+            <TextBox Name="UserEnterPoisionMax" Text="0" Canvas.Left="546" Canvas.Top="294" Width="29" />
+            <CheckBox Name="SearchPoision" Canvas.Left="381" Canvas.Top="293" />
+
+            <!-- Divine, Input Min, Input Max, and Checkbox -->
+            <TextBlock Text="Divine" Canvas.Left="401" Canvas.Top="313" Width="37"  />
+            <TextBox Name="UserEnterDivineMin" Text="0" Canvas.Left="512" Canvas.Top="314" Width="29" />
+            <TextBox Name="UserEnterDivineMax" Text="0" Canvas.Left="546" Canvas.Top="314" Width="29" />
+            <CheckBox Name="SearchDivine" Canvas.Left="381" Canvas.Top="313" />
+
+            <!-- Occult, Input Min, Input Max, and Checkbox -->
+            <TextBlock Text="Occult" Canvas.Left="401" Canvas.Top="333" Width="38" />
+            <TextBox Name="UserEnterOccultMin" Text="0" Canvas.Left="512" Canvas.Top="334" Width="29" />
+            <TextBox Name="UserEnterOccultMax" Text="0" Canvas.Left="546" Canvas.Top="334" Width="29" />
+            <CheckBox Name="SearchOccult" Canvas.Left="381" Canvas.Top="333" />
+
+            <!-- Stability, Input Min, Input Max, and Checkbox -->
+            <TextBlock Text="Stability" Canvas.Left="401" Canvas.Top="353" Width="47"  />
+            <TextBox Name="UserEnterStabilityMin" Text="0" Canvas.Left="512" Canvas.Top="354" Width="29" />
+            <TextBox Name="UserEnterStabilityMax" Text="0" Canvas.Left="546" Canvas.Top="354" Width="29" />
+            <CheckBox Name="SearchStability" Canvas.Left="381" Canvas.Top="353" />
+
+            <!-- Defense -->
+            <TextBlock Text="Defense (min to max)" Canvas.Left="630" Canvas.Top="94"  />
+
+            <!-- Physical Defense, Input Min, Input Max, and Checkbox -->
+            <TextBlock Text="Phys" Canvas.Left="631" Canvas.Top="118" RenderTransformOrigin="0.574,1.945"/>
+            <TextBox Name="UserEnterPhysDefMin" Text="0" Canvas.Left="659" Canvas.Top="116" Width="26" />
+            <TextBox Name="UserEnterPhysDefMax" Text="0" Canvas.Left="688" Canvas.Top="116" Width="26" />
+            <CheckBox Name="SearchPhysDef" Canvas.Left="720" Canvas.Top="120" />
+
+            <!-- Magical Defense, Input Min, Input Max, and Checkbox -->
+            <TextBlock Text="Mag" Canvas.Left="630" Canvas.Top="134" RenderTransformOrigin="3.09,3.198"/>
+            <TextBox Name="UserEnterMagDefMin" Text="0" Canvas.Left="659" Canvas.Top="136" Width="26" />
+            <TextBox Name="UserEnterMagDefMax" Text="0" Canvas.Left="688" Canvas.Top="136" Width="26" />
+            <CheckBox Name="SearchMagDef" Canvas.Left="720" Canvas.Top="140" />
+
+            <!-- Fire Defense, Input Min, Input Max, and Checkbox -->
+            <TextBlock Text="Fire" Canvas.Left="636" Canvas.Top="154" RenderTransformOrigin="-6.245,-0.937"/>
+            <TextBox Name="UserEnterFireDefMin" Text="0" Canvas.Left="659" Canvas.Top="156" Width="26" />
+            <TextBox Name="UserEnterFireDefMax" Text="0" Canvas.Left="688" Canvas.Top="156" Width="26" />
+            <CheckBox Name="SearchFireDef" Canvas.Left="720" Canvas.Top="160" />
+
+            <!-- Lightining Defense, Input Min, Input Max, and Checkbox -->
+            <TextBlock Text="Light" Canvas.Left="629" Canvas.Top="174" RenderTransformOrigin="0.415,1.945"/>
+            <TextBox Name="UserEnterLightDefMin" Text="0" Canvas.Left="659" Canvas.Top="176" Width="26"/>
+            <TextBox Name="UserEnterLightDefMax" Text="0" Canvas.Left="688" Canvas.Top="176" Width="26"/>
+            <CheckBox Name="SearchLightDef" Canvas.Left="720" Canvas.Top="180" />
+
+            <!-- Parameter -->
+            <TextBlock Text="Parameters" Canvas.Left="656" Canvas.Top="203"  />
+
+            <!-- Strength, Input, Checkbox-->
+            <TextBlock Text="Str" Canvas.Left="665" Canvas.Top="222"/>
+            <TextBox Name="UserEnterStrPara" Tag="Parameter" Text="E" Canvas.Left="659" Canvas.Top="242" Width="26" />
+            <CheckBox Name="SearchStrengthParameter" Canvas.Left="644" Canvas.Top="242" />
+
+            <!-- Dexterity, Input, Checkbox-->
+            <TextBlock Text="Dex" Canvas.Left="689" Canvas.Top="222"/>
+            <TextBox Name="UserEnterDexPara" Tag="Parameter" Text="E" Canvas.Left="689" Canvas.Top="242" Width="26" />
+            <CheckBox Name="SearchDexterityParameter" Canvas.Left="714" Canvas.Top="242" />
+
+            <!-- Intelligence, Input, Checkbox-->
+            <TextBlock Text="Int" Canvas.Left="665" Canvas.Top="269"/>
+            <TextBox Name="UserEnterIntPara" Tag="Parameter" Text="E" Canvas.Left="660" Canvas.Top="289" Width="26" />
+            <CheckBox Name="SearchIntelligenceParameter" Canvas.Left="645" Canvas.Top="287" />
+
+            <!-- Faith, Input, Checkbox-->
+            <TextBlock Text="Faith" Canvas.Left="690" Canvas.Top="269"/>
+            <TextBox Name="UserEnterFaiPara" Tag="Parameter" Text="E" Canvas.Left="690" Canvas.Top="289" Width="26" />
+            <CheckBox Name="SearchFaithParameter" Canvas.Left="715" Canvas.Top="287" />
+
+            <!-- Search -->
+            <Button Content="Search" Click="Search_Through_Data" Width="40" Height="30" Canvas.Left="665" Canvas.Top="329"  />
+
+            <!-- Description -->
+            <TextBlock Text="How To Use Search Feature: Check the Checkbox beside the function that you want to search by. Press Search to find the weapon(s) that you want. If no weapons appear based on the parameter you use, then the weapon that use this parameter doesn't exist. Also make sure for Stats to use numbers only and Parameters use capitalize A,B,C,D,E." TextWrapping="Wrap" Width="300" Canvas.Left="409" Canvas.Top="544" />
+
+            <!-- Exit User  -->
+            <Button Content="Exit" Click="Log_Out" Canvas.Left="605" Canvas.Top="499" Width="120" />
+
+        </Canvas>
+
+    </Canvas>
+</Window>
