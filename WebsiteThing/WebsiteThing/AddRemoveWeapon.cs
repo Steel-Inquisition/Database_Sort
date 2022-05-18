@@ -1,21 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text.Json;
+﻿using System.Collections.Generic;
 using System.Windows;
-using System.Windows.Controls;
 
 namespace WebsiteThing
 {
     public partial class MainWindow : Window
     {
         // Add Weapon Functions
-        private void AddWeapon(object sender, RoutedEventArgs e)
+        public void AddWeapon(object sender, RoutedEventArgs e)
         {
 
             bool found = false;
 
+
+            // Search through the dictionary by it's key and value
             foreach (KeyValuePair<string, Weapon> kvp in AllWeapons)
             {
 
@@ -46,47 +43,54 @@ namespace WebsiteThing
         }
 
         // Remove Weapon Function
-        private void RemoveWeapon(object sender, RoutedEventArgs e)
+        public void RemoveWeapon(object sender, RoutedEventArgs e)
         {
 
-            bool found = false;
+            // Get position of the weapon that the user wants to remove
+            int position = FindPosition();
 
-            foreach (KeyValuePair<string, Weapon> kvp in AllWeapons)
+            // If the position is found
+            if (position > -1)
             {
+                // Remove the weapon at the position found
+                UserDictionary[User_Name].FavoriteWeapons.RemoveAt(position);
 
+                // Reprint the wishlist to show the new change
+                PrintWishlist();
+            }
+
+
+        }
+
+
+        // Find the position
+        public int FindPosition()
+        {
+
+
+            // Search through the user's favorite weapon list
+            for (int i = 0; i < UserDictionary[User_Name].FavoriteWeapons.Count; i++)
+            {
                 // if this weapon is the same as the inputed weapon the player wants to remove
-                if (kvp.Key == RemoveWeaponInput.Text)
+                if (UserDictionary[User_Name].FavoriteWeapons[i].name == RemoveWeaponInput.Text)
                 {
-                    UserDictionary[User_Name].FavoriteWeapons.Remove(kvp.Value);
-
-                    found = true;
-
-                    break;
+                    // returnn the position of the weapon to remove
+                    return i;
                 }
             }
 
             // if found then print out the data otherwise state that something went wrong
-            if (found)
-            {
-                PrintWishlist();
-            }
-            else
-            {
-                MessageBox.Show("This Weapon Doesn't Exist or was Spelled Wrong");
-            }
+
+            MessageBox.Show("This Weapon Doesn't Exist or was Spelled Wrong");
+
+            return -1;
         }
 
-        // Print all the members of the wishlist
-        private void PrintWishlist()
-        {
-            DisplayFavorites.Text = "";
 
-            // Get the player's favorite weapon and display them
-            foreach (Weapon this_weapon in UserDictionary[User_Name].FavoriteWeapons)
-            {
-                DisplayFavorites.Text += $"{this_weapon.name} \n";
-            }
-        }
     }
+
+
+
+
 
 }

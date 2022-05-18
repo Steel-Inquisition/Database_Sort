@@ -12,6 +12,7 @@ namespace WebsiteThing
     {
 
         // Used only for event handler (button) that will just activate the save feature
+        // I don't like creating an event handler for it to just activate another function but I can't use this code again since it's only when pressing buttons, therefore creating the Save_User_Data function is better and just calling from that
         private void Save_This_Button(object sender, RoutedEventArgs e)
         {
             Save_User_Data();

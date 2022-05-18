@@ -25,7 +25,7 @@ namespace WebsiteThing
                 // Check all weapon values
                 if (CheckWeaponValues(kvp.Value))
                 {
-                    DisplayData.Text += $"{kvp.Key} \n";
+                    DisplayData.Text += $"{WriteDownInformation(kvp.Value)} \n";
                 }
 
             }
@@ -194,5 +194,38 @@ namespace WebsiteThing
 
             return 0;
         }
+
+        // Write all data down with no parameters needed
+        public void WriteAllData()
+        {
+            foreach (KeyValuePair<string, Weapon> kvp in AllWeapons)
+            {
+                DisplayData.Text += $"{WriteDownInformation(kvp.Value)} \n";
+            }
+        }
+
+        // Print all the members of the wishlist
+        private void PrintWishlist()
+        {
+            DisplayFavorites.Text = "";
+
+            // Get the player's favorite weapon and display them
+            foreach (Weapon this_weapon in UserDictionary[User_Name].FavoriteWeapons)
+            {
+                DisplayFavorites.Text += $"{WriteDownInformation(this_weapon)} \n";
+            }
+        }
+
+
+
+        // Returns the Weapon Information
+        public string WriteDownInformation(Weapon weapon_information)
+        {
+            return $"-----> Name: {weapon_information.name} | Type: {weapon_information.type} | Physical Damage: {weapon_information.physical_damage} | Magical Damage: {weapon_information.magical_damage} | Fire Damage: {weapon_information.fire_damage} | Lightning Damage: {weapon_information.lightning_damage} | Critical: {weapon_information.critical} | Strength Parameter: {weapon_information.strength_parameter} | Dexterity Parameter: {weapon_information.dexterity_parameter} | Intelligence Parameter: {weapon_information.intelligence_parameter} | Faith Parameter: {weapon_information.faith_parameter} | Bleed: {weapon_information.bleed} | Poision: {weapon_information.poision} | Divine: {weapon_information.auxiliary_divine_dark_souls} | Occult: {weapon_information.auxiliary_occult_dark_souls} | Physical Defense: {weapon_information.physical_defense} | Magic Defense: {weapon_information.magic_defense} | Fire Defense: {weapon_information.fire_defense} | Lightning Defense: {weapon_information.lightning_defense} | Stability: {weapon_information.stability}";
+        }
+
+
     }
+
+
 }

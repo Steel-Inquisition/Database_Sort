@@ -13,14 +13,23 @@ namespace WebsiteThing
     {
 
         // Global Variables
+
+        // The dictionary that contains the users
+        // The public User_Name is used as a key to find the correct User in the dictionary
         public Dictionary<string, User> UserDictionary = new();
+
+        // The string that acts as a key to the UserDictionary
         public string User_Name = "";
+
+        // The empty dictionary that contains all the weapons
+        // The name of each individual weapon acts as the key to it
         public Dictionary<string, Weapon> AllWeapons = new();
 
 
         // Instanly activates when the window loads in the first time
         public MainWindow()
         {
+            // Start the program
             InitializeComponent();
 
             // Load All The Weapons
@@ -42,18 +51,6 @@ namespace WebsiteThing
 
             // Write down current user favorites
             PrintWishlist();
-        }
-
-
-
-
-        // Write all data down with no parameters needed
-        public void WriteAllData()
-        {
-            foreach (KeyValuePair<string, Weapon> kvp in AllWeapons)
-            {
-                DisplayData.Text += $"{kvp.Key} \n";
-            }
         }
     }
 
